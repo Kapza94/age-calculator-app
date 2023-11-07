@@ -9,11 +9,11 @@
 
 const date = new Date();
 
-let day = String (date.getDate()).padStart(2, '0');//The padStart is what adds a '0' before each single int. So its is 01,02,03 etc
-let month = String(date.getMonth()+1).padStart(2, '0') // As it indexes from zero a 1 is required. 
-let year = String(date.getFullYear());
+let currentDay = String (date.getDate()).padStart(2, '0');//The padStart is what adds a '0' before each single int. So its is 01,02,03 etc
+let currentMonth = String(date.getMonth()+1).padStart(2, '0') // As it indexes from zero a 1 is required. 
+let currentYear = String(date.getFullYear());
 
-let today = day+ '/'+ month + '/' +year; // gets todays date
+let today = currentDay+ '/'+currentMonth+ '/'+currentYear; // gets todays date
 
 
 
