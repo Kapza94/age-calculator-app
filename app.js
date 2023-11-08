@@ -18,13 +18,22 @@ let today = currentDay+ '/'+currentMonth+ '/'+currentYear; // gets todays date
 
 
 
-// To calculate someone's age in years, months, and days:
+// X years = 2023 (current year) - 1994(birth year) = 29 years
+// Y months = 11 (current month) - 6(birth month) = 5 months- minus 1 month so i have to carry over to days.
+// Z days = 8 (current day) - 15 (birth day) = -7 then i have to plus 31 so then its 24
 
-// Find the differences between the person's birth year/month/day and the current year/month/day:
-// years = birth_year - current_year;
-// months = birth_month - current_month; and
-// day = birth_day - current_day.
-// Replace them in the following formula: age = (years × 365) + (months × 31) + days.
-// Divide the result by years from step 1 and truncate it to get the age in years.
-// Multiply the remainder of step 3 by 12 and truncate it to get the months.
-// Multiply this last remainder by 31 to get the days.
+const inputDateDay = document.getElementById('input-date-day');
+const inputDateMonth = document.getElementById('input-date-month');
+const inputDateYear = document.getElementById('input-date-year');
+
+const submitButton = document.getElementById('submit-btn');
+
+inputDateDay.addEventListener('input', (event) => {
+    
+})
+
+
+
+const onSubmit = () =>{
+
+}
