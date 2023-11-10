@@ -29,11 +29,17 @@ const inputDateYear = document.getElementById('input-date-year');
 const submitButton = document.getElementById('submit-btn');
 
 inputDateDay.addEventListener('input', (event) => {
-    
+
 })
 
 
+inputDateMonth.addEventListener('input', (event) => {
 
-const onSubmit = () =>{
+})
 
-}
+
+inputDateYear.addEventListener('input', (event) => {
+
+})
+
+

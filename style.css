@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap");
+
+body {
+  background-color: whitesmoke;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.d-flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.spaced-outputs {
+  width: 30%;
+}
+
+.align-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container {
+  width: 5rem;
+}
+
+.form {
+  margin: 0 auto;
+  justify-content: space-between;
+  width: 55%;
+}
+
+.content-center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+
+.content-container {
+  height: 100vh;
+}
+
+.submit-btn-class {
+  margin: 0 auto;
+}
