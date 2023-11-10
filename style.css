@@ -47,3 +47,8 @@ body {
 .submit-btn-class {
   margin: 0 auto;
 }
+
+.input-display {
+  font-size: 32px;
+  color: hsl(259, 100%, 65%);
+}
