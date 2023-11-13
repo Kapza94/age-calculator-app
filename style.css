@@ -2,11 +2,24 @@
 
 body {
   background-color: whitesmoke;
+  font-family: "Poppins", sans-serif;
+  background-color: #bbbbbb;
+  margin-top: 100px;
+}
+
+.content-container {
+  margin-top: 50px;
+  height: 625px;
+  background-color: white;
+  border-bottom-right-radius: 160px;
+  border-bottom-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
 }
 
 .d-flex {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .d-flex-between {
@@ -15,7 +28,7 @@ body {
 }
 
 .spaced-outputs {
-  width: 30%;
+  width: 117%;
 }
 
 .align-column {
@@ -24,24 +37,41 @@ body {
 }
 
 .input-container {
-  width: 5rem;
+  width: 7rem;
+  padding-left: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.pad-left {
+  padding-left: 3rem;
+}
+
+.label {
+  color: hsl(0, 1%, 44%);
+  font-size: 12px;
+  font-weight: 100;
+  letter-spacing: 2.1px;
+}
+
+.input-field {
+  padding: 0.7rem;
+  font-size: 32px;
+  font-weight: 700;
+  border-radius: 5px;
+  border: 1px solid hsl(0, 0%, 86%);
+  background-color: white;
 }
 
 .form {
-  margin: 0 auto;
-  justify-content: space-between;
   width: 55%;
+  margin-bottom: 1rem;
 }
 
 .content-center {
   margin: auto;
-  width: 50%;
-  border: 3px solid green;
+  width: 45%;
   padding: 10px;
-}
-
-.content-container {
-  height: 100vh;
 }
 
 .submit-btn-class {
@@ -49,6 +79,48 @@ body {
 }
 
 .input-display {
-  font-size: 32px;
+  font-size: 100px;
   color: hsl(259, 100%, 65%);
+  width: auto;
+  margin: 0;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.output-text {
+  font-size: 100px;
+  font-weight: 800;
+  font-style: italic;
+  margin-left: 1rem;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: auto;
+}
+
+.svg-art {
+  display: flex;
+  justify-content: end;
+  margin-right: 177px;
+}
+
+.svg {
+  border-radius: 100%;
+  background-color: hsl(259, 100%, 65%);
+  padding: 1rem;
+  position: absolute;
+  top: 222px;
+  right: 510px;
+}
+
+.svg::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 50px;
+}
+
+.output-display {
+  border-top: 1px solid hsl(0, 0%, 86%);
+  width: 69%;
+  margin-left: 3rem;
 }
