@@ -9,7 +9,7 @@ body {
 
 .content-container {
   margin-top: 50px;
-  height: 625px;
+  height: 650px;
   background-color: white;
   border-bottom-right-radius: 160px;
   border-bottom-left-radius: 30px;
@@ -75,7 +75,15 @@ body {
 }
 
 .submit-btn-class {
-  margin: 0 auto;
+  padding: 0.6rem 5rem;
+  position: absolute;
+  right: 656px;
+  border-radius: 5px;
+  border: 1px solid hsl(259, 100%, 65%);
+  background-color: hsl(259, 100%, 65%);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 
 .input-display {
@@ -123,4 +131,7 @@ body {
   border-top: 1px solid hsl(0, 0%, 86%);
   width: 69%;
   margin-left: 3rem;
+}
+
+.submit-btn-class {
 }

@@ -67,8 +67,9 @@ let inputYearValue = inputYear.value;
     // if(currentMonth < inputMonthValue){
 
     // }
-
 })
+
+
 // X years = 2023 (current year) - 1994(birth year) = 29 years
 // Y months = 11 (current month) - 6(birth month) = 5 months- minus 1 month so i have to carry over the days.
 // Z days = 8 (current day) - 15 (birth day) = -7 then i have to plus 31 so then its 24
