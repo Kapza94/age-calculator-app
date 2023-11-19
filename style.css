@@ -78,6 +78,7 @@ body {
   padding: 0.6rem 5rem;
   position: absolute;
   right: 656px;
+  top: 700px;
   border-radius: 5px;
   border: 1px solid hsl(259, 100%, 65%);
   background-color: hsl(259, 100%, 65%);

@@ -1,18 +1,18 @@
+// const monthArr = [
+//             {'1' : 31,},
+//             {'2' : 28,},
+//             {'3' : 31,},
+//             {'4' : 30,},
+//             {'5' : 31,},
+//             {'6' : 30,},
+//             {'7' : 31,},
+//             {'8' : 30,},
+//             {'9' : 31,},
+//             {'10' : 31,},
+//             {'11' : 30,},
+//             {'12' : 31,},
+// ]
 
-
-//Months defined
-const january = 31;
-const february = 28;
-const march = 31;
-const april = 30;
-const may = 31;
-const june = 30;
-const july = 31;
-const august = 30;
-const september = 31;
-const october = 31;
-const november = 30;
-const december = 31;
 
 //Current Date
 const date = new Date();
@@ -29,70 +29,47 @@ const inputMonth = document.getElementById('input-date-month');
 const inputYear = document.getElementById('input-date-year');
 
 
-
 const submitButton = document.getElementById('submit-btn');
 
 //Input Values Output
-const outputDay = document.getElementById('input-display-day');
-const outputDayValue = outputDay.value;
-const outputMonth = document.getElementById('input-display-month');
-const outputYear =document.getElementById('input-display-year');
-
-//submit formula
-submitButton.addEventListener('click', () =>{
-    ////User's typed Values
-let inputDayValue = inputDay.value;
-let inputMonthValue = inputMonth.value;
-let inputYearValue = inputYear.value;
-    //Year result calculation
-    const yearResult = currentYear - inputYearValue;
-    outputDay.innerHTML = yearResult;
-
-    //Month result calculation
-    const monthResult = currentMonth - inputMonthValue;
-    outputMonth.innerHTML = monthResult;
-    //Day result calculation
-    const dayResult = currentDay - inputDayValue;
-    outputYear.innerHTML = dayResult;
-
-    if(inputYearValue > currentYear){
-        inputYear.style.border = '1.5px solid red';
-    }
-
-    if(inputMonthValue > currentMonth ){
-        outputMonth = outputMonth - 1;
-        //DONE-works fine. Red color for past. ERROR NEEDED 
-    }
-
-    // if(currentMonth < inputMonthValue){
-
-    // }
-})
+let outputDay = document.getElementById('input-display-day');
+let outputMonth = document.getElementById('input-display-month');
+let outputYear =document.getElementById('input-display-year');
 
 
-// X years = 2023 (current year) - 1994(birth year) = 29 years
-// Y months = 11 (current month) - 6(birth month) = 5 months- minus 1 month so i have to carry over the days.
-// Z days = 8 (current day) - 15 (birth day) = -7 then i have to plus 31 so then its 24
+submitButton.addEventListener('click', () => {
+    // User's typed Values
+    let inputDayValue = parseInt(inputDay.value, 10);
+    let inputMonthValue = parseInt(inputMonth.value, 10) - 1; // Month is 0-indexed
+    let inputYearValue = parseInt(inputYear.value, 10);
+
+    const currentDate = new Date();
+    const birthDate = new Date(inputYearValue, inputMonthValue, inputDayValue); // Month is 0-indexed
+
+    const currentDateMilliseconds = currentDate.getTime();
+    const birthDateMilliseconds = birthDate.getTime();
+
+    const differenceMilliseconds = currentDateMilliseconds - birthDateMilliseconds;
+
+    // Convert milliseconds to years, months, and days
+    const millisecondsInDay = 24 * 60 * 60 * 1000;
+    const millisecondsInMonth = 30.44 * millisecondsInDay; // Approximate average month length
+    const millisecondsInYear = 365.25 * millisecondsInDay; // Approximate average year length
+
+    const years = Math.floor(differenceMilliseconds / millisecondsInYear);
+    const remainingMilliseconds = differenceMilliseconds % millisecondsInYear;
+
+    const months = Math.floor(remainingMilliseconds / millisecondsInMonth);
+    const remainingDaysMilliseconds = remainingMilliseconds % millisecondsInMonth;
+
+    const days = Math.floor(remainingDaysMilliseconds / millisecondsInDay);
+
+    // Display or use the 'years', 'months', and 'days' variables as needed
+    outputYear.innerHTML = years;
+    outputMonth.innerHTML = months;
+    outputDay.innerHTML = days;
+});
 
 
-// Certainly! Let's use an example where the birth month is later in the year than the current month, resulting in a negative value for Y (months).
 
-// Birthdate: September 20, 1990
-// Current date: April 15, 2023
-// X years = 2023 (current year) - 1990 (birth year) = 33 years.
-// Y months = 4 (current month) - 9 (birth month) = -5 months. Since Y is negative, subtract 1 from X and add 12 to Y, making it 32 years and 7 months.
-// Z days = 15 (current day) - 20 (birth day) = -5 days. Adjust by adding 30 (approximate days in a month), resulting in 25 days.
-// So, in this case, the age would be 32 years, 7 months, and 25 days. This example illustrates how to handle the situation when Y (months) is negative.
-
-
-// When dealing with negative days in the context of calculating age, the approach is 
-// to typically add the exact number of days in the month you are borrowing from. 
-// Different months have different numbers of days, so it's more accurate to use the 
-// specific value for the month you are working with.
-
-// For example:
-
-// If you're in a month with 31 days and need to borrow days, you would add 31.
-// If you're in a month with 30 days, you would add 30.
-// If you're in February, you might add 28 or 29 days depending on whether it's a leap year or not.
-// Using the exact number of days in the month provides a more precise adjustment in the age calculation.
+// Once i put everything in miliseconds everything was better....
