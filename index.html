@@ -24,41 +24,50 @@
     <div class="content-container content-center">
       <form action="" class="d-flex form">
         <!-- Day -->
-        <div id="input-day-wrapper" class="input-container d-flex align-column pad-left">
-          <label for="input-date" class="label">DAY</label>
-          <input
-            type="text"
-            maxlength="2"
-            name="input-day"
-            id="input-date-day"
-            class="input-field"
-            placeholder="DD"
-          />
+        <div class="d-flex align-column">
+          <div id="input-day-wrapper" class="input-container d-flex align-column pad-left">
+            <label for="input-date" class="label">DAY</label>
+            <input
+              type="text"
+              maxlength="2"
+              name="input-day"
+              id="input-date-day"
+              class="input-field"
+              placeholder="DD"
+            />
+          </div>
+          <div id="day-err" class="err-msg"></div>
         </div>
         <!-- Month -->
-        <div id="input-month-wrapper" class="input-container d-flex align-column">
-          <label for="input-month" class="label">MONTH</label>
-          <input
-            type="text"
-            maxlength="2"
-            name="input-month"
-            id="input-date-month"
-            max="12"
-            class="input-field"
-            placeholder="MM"
-          />
+        <div class="d-flex align-column">
+          <div id="input-month-wrapper" class="input-container d-flex align-column">
+            <label for="input-month" class="label">MONTH</label>
+            <input
+              type="text"
+              maxlength="2"
+              name="input-month"
+              id="input-date-month"
+              max="12"
+              class="input-field"
+              placeholder="MM"
+            />
+          </div>
+          <div id="month-err" class="err-msg"></div>
         </div>
         <!--Year  -->
-        <div id="input-year-wrapper" class="input-container d-flex align-column">
-          <label for="input-year" class="label">YEAR</label>
-          <input
-            type="text"
-            maxlength="4"
-            name="input-year"
-            id="input-date-year"
-            class="input-field"
-            placeholder="YYYY"
-          />
+        <div class="d-flex align-column">
+          <div id="input-year-wrapper" class="input-container d-flex align-column">
+            <label for="input-year" class="label">YEAR</label>
+            <input
+              type="text"
+              maxlength="4"
+              name="input-year"
+              id="input-date-year"
+              class="input-field"
+              placeholder="YYYY"
+            />
+          </div>
+          <div id="year-err" class="err-msg"></div>
         </div>
       </form>
       <div class="svg-art">

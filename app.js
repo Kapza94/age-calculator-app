@@ -1,4 +1,28 @@
+//displaying errors
+const displayErrMsg = (elementId, message) =>{
+    const errElement = document.getElementById(elementId);
+    errElement.textContent = message;
+    errElement.style.color = 'red'
+}
 
+// removing errors
+const removeErrMsg = () =>{
+    const errIds = [
+        'day-err',
+        'month-err',
+        'year-err'
+    ]
+    
+    errIds.forEach((id) =>{
+        const errElement = document.getElementById(id)
+        errElement.textContent = '';
+    })
+    
+    inputYear.style.border = '';
+    inputMonth.style.border = '';
+    inputDay.style.border = '';
+    
+}
 //Current Date
 const date = new Date();
 
@@ -25,61 +49,82 @@ let outputYear =document.getElementById('input-display-year');
 inputDay.addEventListener('input', (event) => {
     let inputValue = event.target.value;
     event.target.value = inputValue.replace(/[^0-9]/g, '');
-    console.log(inputValue)
+    if(event.target.value > 31){
+        outputDay.innerHTML = '--';
+        displayErrMsg('day-err', 'Can not be greater than 31')
+        event.target.style.border = '1px solid red'
+    }else {
+        removeErrMsg()
+    }
 })
 
 inputMonth.addEventListener('input', (event)=>{
-let inputValue = event.target.value;
-event.target.value = inputValue.replace(/[^0-9]/g, '');
+    let inputValue = event.target.value;
+    event.target.value = inputValue.replace(/[^0-9]/g, '');
+    if(event.target.value > 12){
+        outputMonth.innerHTML = '--';
+        displayErrMsg('month-err', 'Only months 1 - 12')
+        event.target.style.border = '1px solid red'
+    }else {
+        removeErrMsg()
+    }
 })
 
 inputYear.addEventListener('input', (event)=>{
-let inputValue = event.target.value;
-event.target.value = inputValue.replace(/[^0-9]/g, '');
-if(inputValue > currentYear){
-    inputYear.style.border = '1px solid red'
-}
+    let inputValue = event.target.value;
+    event.target.value = inputValue.replace(/[^0-9]/g, '');
+    if(event.target.value > currentYear){
+        outputYear.innerHTML = '--';
+        displayErrMsg('year-err', 'Cannot be in the future.')
+        event.target.style.border = '1px solid red'
+    } else {
+        removeErrMsg()
+    }
+    
 })
 
 //SUBMIT CLICK
 submitButton.addEventListener('click', () => {
+    removeErrMsg()
     // User's typed Values
     let inputMonthValue = parseInt(inputMonth.value, 10) - 1; // Month is 0-indexed
     let inputYearValue = parseInt(inputYear.value, 10);
     let inputDayValue = parseInt(inputDay.value, 10);
-
+    
     if (isNaN(inputYearValue) || isNaN(inputMonthValue) || isNaN(inputDayValue)) {
         // Handle the case where any input is NaN (e.g., display an error or set to a default value)
-        inputDay.style.border = '1px solid red';
-        outputDay.innerHTML = '--';
-
-        inputMonth.style.border = '1px solid red'
-        outputMonth.innerHTML = '--';
-
-        inputYear.style.border = '1px solid red'
-        outputYear.innerHTML = '--';
+        if(isNaN(inputYearValue)){
+            displayErrMsg('year-err','cannot be blank' )
+        }
+        if(isNaN(inputMonthValue)){
+            displayErrMsg('month-err','cannot be blank' )
+        }
+        if(isNaN(inputDayValue)){
+            displayErrMsg('day-err','cannot be blank' )
+        }
+        
     } else {
         const currentDate = new Date();
         const birthDate = new Date(inputYearValue, inputMonthValue, inputDayValue); // Month is 0-indexed
-
+        
         const currentDateMilliseconds = currentDate.getTime();
         const birthDateMilliseconds = birthDate.getTime();
-
+        
         const differenceMilliseconds = currentDateMilliseconds - birthDateMilliseconds;
-
+        
         // Convert milliseconds to years, months, and days
         const millisecondsInDay = 24 * 60 * 60 * 1000;
         const millisecondsInMonth = 30.44 * millisecondsInDay; // Approximate average month length
         const millisecondsInYear = 365.25 * millisecondsInDay; // Approximate average year length
-
+        
         const years = Math.floor(differenceMilliseconds / millisecondsInYear);
         const remainingMilliseconds = differenceMilliseconds % millisecondsInYear;
-
+        
         const months = Math.floor(remainingMilliseconds / millisecondsInMonth);
         const remainingDaysMilliseconds = remainingMilliseconds % millisecondsInMonth;
-
+        
         const days = Math.floor(remainingDaysMilliseconds / millisecondsInDay);
-
+        
         // Display or use the 'years', 'months', and 'days' variables as needed
         outputYear.innerHTML = years;
         outputMonth.innerHTML = months;
@@ -93,28 +138,4 @@ submitButton.addEventListener('click', () => {
 
 // Once i put everything in miliseconds everything was better....
 
-    
-    // if(inputDayValue > 31 || inputDayValue < 1){
-    //     submitButton.disabled = true;
-    //     outputYear.innerHTML = '--'
-    //     outputMonth.innerHTML = '--'
-    //     outputDay.innerHTML = '--'
-    //     inputDay.style.border = '1px solid red';
-    //     return
-    // }else {
-    //     inputDay.style.border = '';
-    // };
 
-    // console.log('Before if statement for month');
-
-    // if(inputMonthValue > 12 || inputMonthValue < 1){
-    //     submitButton.disabled = true;
-    //     outputYear.innerHTML = '--'
-    //     outputMonth.innerHTML = '--'
-    //     outputDay.innerHTML = '--'
-    //     inputMonth.style.border = '1px solid red';
-    //     return
-    // } else {
-    //     inputMonth.style.border = '';
-    // };
-    
