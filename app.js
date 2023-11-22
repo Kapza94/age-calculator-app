@@ -3,14 +3,16 @@ const displayErrMsg = (elementId, message) =>{
     const errElement = document.getElementById(elementId);
     errElement.textContent = message;
     errElement.style.color = 'red'
+
 }
 
 // removing errors
-const removeErrMsg = () =>{
+const clearErrMsg = () =>{
     const errIds = [
         'day-err',
         'month-err',
-        'year-err'
+        'year-err',
+        'global-error'
     ]
     
     errIds.forEach((id) =>{
@@ -32,33 +34,35 @@ let currentYear = String(date.getFullYear());
 
 let today = currentDay+ '/'+currentMonth+ '/'+currentYear; // gets todays date
 
-//User Input fields
-const inputDay = document.getElementById('input-date-day');
-const inputMonth = document.getElementById('input-date-month');
-const inputYear = document.getElementById('input-date-year');
-
-
-const submitButton = document.getElementById('submit-btn');
-
 //Input Values Output
+
 let outputDay = document.getElementById('input-display-day');
 let outputMonth = document.getElementById('input-display-month');
 let outputYear =document.getElementById('input-display-year');
 
+const inputDay = document.getElementById('input-date-day');
 
 inputDay.addEventListener('input', (event) => {
+    const dayErr = document.getElementById('day-err')
+    dayErr.innerHTML = '';
     let inputValue = event.target.value;
     event.target.value = inputValue.replace(/[^0-9]/g, '');
     if(event.target.value > 31){
         outputDay.innerHTML = '--';
-        displayErrMsg('day-err', 'Can not be greater than 31')
+        displayErrMsg('day-err', 'Between 1 - 31')
         event.target.style.border = '1px solid red'
+        console.log(event.target.value)
     }else {
-        removeErrMsg()
+        event.target.style.border = '';
     }
+
 })
 
+const inputMonth = document.getElementById('input-date-month');
+
 inputMonth.addEventListener('input', (event)=>{
+    const monthErr = document.getElementById('month-err')
+    monthErr.innerHTML = '';
     let inputValue = event.target.value;
     event.target.value = inputValue.replace(/[^0-9]/g, '');
     if(event.target.value > 12){
@@ -66,30 +70,53 @@ inputMonth.addEventListener('input', (event)=>{
         displayErrMsg('month-err', 'Only months 1 - 12')
         event.target.style.border = '1px solid red'
     }else {
-        removeErrMsg()
+        event.target.style.border = '';
     }
+
 })
 
+const inputYear = document.getElementById('input-date-year');
+
 inputYear.addEventListener('input', (event)=>{
+    const yearErr = document.getElementById('year-err')
+    yearErr.innerHTML = '';
     let inputValue = event.target.value;
     event.target.value = inputValue.replace(/[^0-9]/g, '');
     if(event.target.value > currentYear){
         outputYear.innerHTML = '--';
-        displayErrMsg('year-err', 'Cannot be in the future.')
+        displayErrMsg('year-err', 'Can\'t be in the future.')
         event.target.style.border = '1px solid red'
     } else {
-        removeErrMsg()
+        event.target.style.border = '';
     }
-    
+
 })
 
 //SUBMIT CLICK
+const submitButton = document.getElementById('submit-btn');
+
 submitButton.addEventListener('click', () => {
-    removeErrMsg()
+    clearErrMsg()
     // User's typed Values
     let inputMonthValue = parseInt(inputMonth.value, 10) - 1; // Month is 0-indexed
     let inputYearValue = parseInt(inputYear.value, 10);
     let inputDayValue = parseInt(inputDay.value, 10);
+
+    if(inputDay.value > 31 || inputMonth.value > 12 || inputYear.value > currentYear){
+        clearErrMsg();
+        outputDay.innerHTML = '--';
+        displayErrMsg('global-error', 'Incorrect date');
+        inputDay.style.border = '1px solid red';
+        inputMonth.style.border = '1px solid red';
+        inputYear.style.border = '1px solid red';
+    
+        // Set a timeout to clear message after 6 seconds
+        setTimeout(() => {
+            clearErrMsg('global-error');
+        }, 6000);
+    
+        return;
+    }
     
     if (isNaN(inputYearValue) || isNaN(inputMonthValue) || isNaN(inputDayValue)) {
         // Handle the case where any input is NaN (e.g., display an error or set to a default value)
@@ -102,6 +129,7 @@ submitButton.addEventListener('click', () => {
         if(isNaN(inputDayValue)){
             displayErrMsg('day-err','cannot be blank' )
         }
+        
         
     } else {
         const currentDate = new Date();

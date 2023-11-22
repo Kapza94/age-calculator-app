@@ -45,6 +45,7 @@ body {
 
 .pad-left {
   padding-left: 3rem;
+  padding-bottom: 0.5rem;
 }
 
 .label {
@@ -137,7 +138,33 @@ body {
   margin-left: 3rem;
 }
 
-.err-msg {
+.invalid-err {
+  position: absolute;
+  left: 604px;
+  top: 116px;
+  color: red;
+  font-size: 10px;
+}
+
+.day {
   font-size: 10px;
   color: lightcoral;
+  padding-left: 3.1rem;
+}
+
+.month {
+  font-size: 10px;
+  color: lightcoral;
+  padding-left: 1.1rem;
+}
+
+.year {
+  font-size: 10px;
+  color: lightcoral;
+  padding-left: 1.1rem;
+}
+
+#input-month-wrapper,
+#input-year-wrapper {
+  padding-bottom: 0.5rem;
 }
